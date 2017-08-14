@@ -2,7 +2,9 @@
  * Brute force extraction of Windows code pages.
  */
 
+#include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
 #include <windows.h>
  
 #define STR_SIZE 8
@@ -38,7 +40,6 @@ int main(int argv, char *argv[]) {
 
 			switch (cpInfo.MaxCharSize) {
 				case 1:
-				{
 				    for (int onlyByte = 0; onlyByte < 256; onlyByte++) {
 				    	multiByteString[0] = onlyByte;
 
@@ -47,10 +48,9 @@ int main(int argv, char *argv[]) {
 					    	printMapping(multiByteString, 1, wideCharString, resultSize);
 					    }
 				    }
-				}
+				    break;
 
 				case 2:
-				{
 					//XXX: Could use cpInfo.LeadByte to get this information without making a call.
 				    for (int firstByte = 0; firstByte < 256; firstByte++) {
 				        if (IsDBCSLeadByteEx(codePage, firstChar)) {
@@ -72,7 +72,7 @@ int main(int argv, char *argv[]) {
 						    }
 			            }
 				    }
-				}
+				    break;
 
 				default:
 					fprintf(stderr, "MaxCharSize was %d", cpInfo.MaxCharSize);
