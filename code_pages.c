@@ -23,7 +23,7 @@ void printMapping(char *multiByteString, int multiByteStringLength, wchar_t *wid
 	fprintf(stdout, "\t#");
 }
 
-int main(int argv, char *argv[]) {
+int main(int argv, char **argv) {
 	int codePage;
 	CPINFOEX cpInfo;
 	int success;
@@ -38,7 +38,7 @@ int main(int argv, char *argv[]) {
 
 	for (codePage = 0; codePage < 65536; codePage++) {
 
-		success = GetCPInfo(codePage, &cpInfo);
+		success = GetCPInfoEx(codePage, &cpInfo);
 		if (success) {
 
 			fprintf(stdout, "\n# Code page %d (%s)\n\n", codePage, cpInfo.CodePageName);
@@ -60,7 +60,7 @@ int main(int argv, char *argv[]) {
 				case 2:
 					//XXX: Could use cpInfo.LeadByte to get this information without making a call.
 				    for (firstByte = 0; firstByte < 256; firstByte++) {
-				        if (IsDBCSLeadByteEx(codePage, firstChar)) {
+				        if (IsDBCSLeadByteEx(codePage, firstByte)) {
 				            for (secondByte = 0; secondByte < 256; secondByte++) {
 						    	multiByteString[0] = firstByte;
 						    	multiByteString[1] = secondByte;
