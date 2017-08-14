@@ -80,7 +80,7 @@ int main(void) {
 				    break;
 
 				default:
-					fprintf(stderr, "MaxCharSize was %d", cpInfo.MaxCharSize);
+					fprintf(stderr, "MaxCharSize was %d for code page %d (%s)\n", cpInfo.MaxCharSize, codePage, cpInfo.CodePageName);
 					return 1;
 			}
 		}
