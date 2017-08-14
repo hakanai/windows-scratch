@@ -23,10 +23,9 @@ void printMapping(char *multiByteString, int multiByteStringLength, wchar_t *wid
 	fprintf(stdout, "\t#");
 }
 
-int main(int argv, char **argv) {
-	int codePage;
+int main(void) {
+	UINT codePage;
 	CPINFOEX cpInfo;
-	int success;
 	char multiByteString[STR_SIZE];
 	wchar_t wideCharString[STR_SIZE];
 	int onlyByte;
@@ -38,8 +37,7 @@ int main(int argv, char **argv) {
 
 	for (codePage = 0; codePage < 65536; codePage++) {
 
-		success = GetCPInfoEx(codePage, &cpInfo);
-		if (success) {
+		if (GetCPInfoEx(codePage, 0, &cpInfo)) {
 
 			fprintf(stdout, "\n# Code page %d (%s)\n\n", codePage, cpInfo.CodePageName);
 
