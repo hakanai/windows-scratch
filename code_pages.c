@@ -11,11 +11,11 @@
 
 void printMapping(char *multiByteString, int multiByteStringLength, wchar_t *wideCharString, int wideCharStringLength) {
 	fprintf(stdout, "0x");
-	for (int i = 0; i < multiByteStringLength, i++) {
+	for (int i = 0; i < multiByteStringLength; i++) {
 		fprintf(stdout, "%02X", multiByteString[i]);
 	}
 	fprintf(stdout, "\t0x");
-	for (int i = 0; i < wideCharStringLength, i++) {
+	for (int i = 0; i < wideCharStringLength; i++) {
 		fprintf(stdout, "%04X", wideCharString[i]);
 	}
 	fprintf(stdout, "\t#");
