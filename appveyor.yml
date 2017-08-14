@@ -4,3 +4,6 @@ install:
 build_script:
   - nmake
 
+artifacts:
+  - path: code_pages.exe
+  - path: code_pages_result.log
