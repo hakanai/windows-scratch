@@ -14,13 +14,13 @@ void printMapping(char *multiByteString, int multiByteStringLength, wchar_t *wid
 
 	fprintf(stdout, "0x");
 	for (i = 0; i < multiByteStringLength; i++) {
-		fprintf(stdout, "%02X", multiByteString[i]);
+		fprintf(stdout, "%02X", (UINT) multiByteString[i]);
 	}
 	fprintf(stdout, "\t0x");
 	for (i = 0; i < wideCharStringLength; i++) {
-		fprintf(stdout, "%04X", wideCharString[i]);
+		fprintf(stdout, "%04X", (UINT) wideCharString[i]);
 	}
-	fprintf(stdout, "\t#");
+	fprintf(stdout, "\t#\n");
 }
 
 int main(void) {
